@@ -299,9 +299,11 @@ namespace BookStoresWebAPI.Models
 
                 entity.ToTable("User");
 
-                entity.Property(e => e.UserId)
-                    .HasColumnName("user_id")
-                    .HasMaxLength(50)
+                entity.Property(e => e.UserId).HasColumnName("user_id");
+
+                entity.Property(e => e.EmailAddress)
+                    .HasColumnName("email_address")
+                    .HasMaxLength(100)
                     .IsUnicode(false);
 
                 entity.Property(e => e.FirstName)
@@ -345,13 +347,12 @@ namespace BookStoresWebAPI.Models
                 entity.HasOne(d => d.Job)
                     .WithMany(p => p.Users)
                     .HasForeignKey(d => d.JobId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__Users__job_id__114A936A");
+                    .HasConstraintName("FK__User2__job_id__5C6CB6D7");
 
                 entity.HasOne(d => d.Pub)
                     .WithMany(p => p.Users)
                     .HasForeignKey(d => d.PubId)
-                    .HasConstraintName("FK__Users__pub_id__607251E5");
+                    .HasConstraintName("FK__User2__pub_id__5D60DB10");
             });
 
             OnModelCreatingPartial(modelBuilder);
