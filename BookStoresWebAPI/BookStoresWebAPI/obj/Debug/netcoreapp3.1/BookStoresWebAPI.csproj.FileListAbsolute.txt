@@ -133,5 +133,12 @@ C:\Data\CuriousDrive\EntityFrameworkDBFirst\BookStoresWebAPI\BookStoresWebAPI\bi
 C:\Data\CuriousDrive\EntityFrameworkDBFirst\BookStoresWebAPI\BookStoresWebAPI\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
 C:\Data\CuriousDrive\EntityFrameworkDBFirst\BookStoresWebAPI\BookStoresWebAPI\bin\Debug\netcoreapp3.1\Newtonsoft.Json.Bson.dll
 C:\Data\CuriousDrive\EntityFrameworkDBFirst\BookStoresWebAPI\BookStoresWebAPI\obj\Debug\netcoreapp3.1\BookStoresWebAPI.csprojAssemblyReference.cache
+C:\Data\CuriousDrive\EntityFrameworkDBFirst\BookStoresWebAPI\BookStoresWebAPI\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+C:\Data\CuriousDrive\EntityFrameworkDBFirst\BookStoresWebAPI\BookStoresWebAPI\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.JsonWebTokens.dll
+C:\Data\CuriousDrive\EntityFrameworkDBFirst\BookStoresWebAPI\BookStoresWebAPI\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Logging.dll
+C:\Data\CuriousDrive\EntityFrameworkDBFirst\BookStoresWebAPI\BookStoresWebAPI\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Protocols.dll
+C:\Data\CuriousDrive\EntityFrameworkDBFirst\BookStoresWebAPI\BookStoresWebAPI\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+C:\Data\CuriousDrive\EntityFrameworkDBFirst\BookStoresWebAPI\BookStoresWebAPI\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Tokens.dll
+C:\Data\CuriousDrive\EntityFrameworkDBFirst\BookStoresWebAPI\BookStoresWebAPI\bin\Debug\netcoreapp3.1\System.IdentityModel.Tokens.Jwt.dll
 C:\Data\CuriousDrive\EntityFrameworkDBFirst\BookStoresWebAPI\BookStoresWebAPI\obj\Debug\netcoreapp3.1\BookStoresWebAPI.MvcApplicationPartsAssemblyInfo.cache
 C:\Data\CuriousDrive\EntityFrameworkDBFirst\BookStoresWebAPI\BookStoresWebAPI\obj\Debug\netcoreapp3.1\EFCorePluralizer.cs

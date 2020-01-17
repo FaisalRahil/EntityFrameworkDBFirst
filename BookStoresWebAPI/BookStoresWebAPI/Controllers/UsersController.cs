@@ -6,6 +6,12 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using BookStoresWebAPI.Models;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.Extensions.Options;
+using System.Text;
+using System.Security.Claims;
+using System.IdentityModel.Tokens.Jwt;
+using Microsoft.IdentityModel.Tokens;
 
 namespace BookStoresWebAPI.Controllers
 {
@@ -14,10 +20,12 @@ namespace BookStoresWebAPI.Controllers
     public class UsersController : ControllerBase
     {
         private readonly BookStoresDBContext _context;
+        private readonly JWTSettings _jwtsettings;
 
-        public UsersController(BookStoresDBContext context)
+        public UsersController(BookStoresDBContext context, IOptions<JWTSettings> jwtsettings)
         {
             _context = context;
+            _jwtsettings = jwtsettings.Value;
         }
 
         // GET: api/Users
@@ -39,6 +47,42 @@ namespace BookStoresWebAPI.Controllers
             }
 
             return user;
+        }
+
+        // GET: api/Users
+        [HttpGet("Login")]
+        public async Task<ActionResult<UserWithToken>> Login([FromBody] User user)
+        {
+            user = await _context.Users
+                                .Include(u => u.Job)
+                            .Where(u => u.EmailAddress == user.EmailAddress
+                                && u.Password == u.Password)
+                            .FirstOrDefaultAsync();
+
+            UserWithToken userWithToken = new UserWithToken(user);
+
+            if (userWithToken == null)
+            {
+                return NotFound();
+            }
+
+            // sign your token here here..
+            var tokenHandler = new JwtSecurityTokenHandler();
+            var key = Encoding.ASCII.GetBytes(_jwtsettings.SecretKey);
+            var tokenDescriptor = new SecurityTokenDescriptor
+            {
+                Subject = new ClaimsIdentity(new Claim[]
+                {
+                    new Claim(ClaimTypes.Name, user.EmailAddress)
+                }),
+                Expires = DateTime.UtcNow.AddMonths(6),
+                SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key),
+                SecurityAlgorithms.HmacSha256Signature)
+            };
+            var token = tokenHandler.CreateToken(tokenDescriptor);
+            userWithToken.Token = tokenHandler.WriteToken(token);
+
+            return userWithToken;
         }
 
         // PUT: api/Users/5
