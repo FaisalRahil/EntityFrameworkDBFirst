@@ -50,16 +50,20 @@ namespace BookStoresWebAPI.Controllers
         }
 
         // GET: api/Users
-        [HttpGet("Login")]
+        [HttpPost("Login")]
         public async Task<ActionResult<UserWithToken>> Login([FromBody] User user)
         {
             user = await _context.Users
                                 .Include(u => u.Job)
                             .Where(u => u.EmailAddress == user.EmailAddress
-                                && u.Password == u.Password)
+                                && u.Password == user.Password)
                             .FirstOrDefaultAsync();
 
-            UserWithToken userWithToken = new UserWithToken(user);
+
+            UserWithToken userWithToken = null;
+
+            if (user != null)
+                userWithToken = new UserWithToken(user);
 
             if (userWithToken == null)
             {
